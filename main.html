@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha256-j+P6EZJVrbXgwSR5Mx+eCS6FvP9Wq27MBRC/ogVriY0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <header class="container page-header">
+            <p>今天的训练组合</p>      
+        </header>
+
+        <div class="container" id="practice-page">
+            <div class="row">
+                <div class="col-sm-12">
+                    <practice-body></practice-body>
+                </div>
+            </div>
+        </div>
+
+        <footer class="container">
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-info btn-sm">训练</button>
+                    <button class="btn btn-info btn-sm">统计</button>
+                    <button class="btn btn-info btn-sm">自由训练</button>
+                </div>
+
+            </div>
+        </footer>
+
+        <template id="practice-body-template">
+            <div>
+                 <div class="row">
+                <div class="col-sm-12">
+                     <span class="label label-warning"></span>
+            <span class="label label-warning">{{pushUpsData[0].cycleNums[0]}}</span>
+            <span class="label label-default">{{pushUpsData[0].cycleNums[1]}}</span>
+            <span class="label label-default">{{pushUpsData[0].cycleNums[2]}}</span>
+            <span class="label label-default">{{pushUpsData[0].cycleNums[3]}}</span>
+            <span class="label label-default">{{pushUpsData[0].cycleNums[4]}}</span>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-info btn-lg" @click="decrement">{{currentRemaining}}</button>
+            <!--<button class="btn btn-danger" @click="resetApp">重置</button>-->
+                </div>
+            </div>
+            </div>
+        </template>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.js" integrity="sha256-MbKnwYm5PqnQ9xLd0vK2C8vDJZA+PXKuNlmgJc+BG48=" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js" integrity="sha256-Cv5v4i4SuYvwRYzIONifZjoc99CkwfncROMSWat1cVA=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.4/timeago.min.js" integrity="sha256-34otvl+f6DWlliQUlAwT5hvizEJc8lPlNpW9T23pfGA=" crossorigin="anonymous"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
+
+</html>
