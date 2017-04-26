@@ -10,22 +10,27 @@
     </head>
     <body>
         <header class="container page-header">
-            <p>今天的训练组合</p>      
+            <p>历史记录</p>   
         </header>
 
         <div class="container" id="practice-page">
             <div class="row">
                 <div class="col-sm-12">
-                    <practice-body></practice-body>
+                   <span>最高纪录:{{bestRecord}}</span>
+                   <span>总计:{{totalRecord}}</span>
+                   <span>平均纪录:{{Math.round(totalRecord / days)}}</span>
+                   <hr>
                 </div>
             </div>
         </div>
 
-        <footer class="container" id="menu-in-practice">
+        <img src="./assets/image/pushups-img.jpg" alt="push ups image" class="img-responsive img-circle">
+
+        <footer class="container" id="menu-bar">
             <hr>
             <div class="row">
                 <div class="col-sm-4">
-                    <button class="btn btn-info btn-sm" @click="redirectToHome">首页</button>
+                    <button class="btn btn-info btn-sm" @click="redirectToPractice">训练</button>
                     <button class="btn btn-info btn-sm">统计</button>
                     <button class="btn btn-info btn-sm">自由训练</button>
                 </div>
@@ -33,28 +38,7 @@
             </div>
         </footer>
 
-        <template id="practice-body-template">
-            <div>
-                 <div class="row">
-                <div class="col-sm-12">
-                     <span class="label label-warning"></span>
-            <span class="label label-warning">{{pushUpsData[0].cycleNums[0]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[1]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[2]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[3]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[4]}}</span>
-                </div>
-            </div>
-            <hr>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-info btn-lg" @click="decrement">{{currentRemaining}}</button>
-            <!--<button class="btn btn-danger" @click="resetApp">重置</button>-->
-                </div>
-            </div>
-            </div>
-        </template>
+        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.js" integrity="sha256-MbKnwYm5PqnQ9xLd0vK2C8vDJZA+PXKuNlmgJc+BG48=" crossorigin="anonymous"></script>
 

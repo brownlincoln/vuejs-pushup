@@ -16,7 +16,7 @@ Vue.component("practice-body", {
                     startTime: Date.now(),
                     endTime: Date.now()
                 }              
-            ]           
+            ]     
         };
     },
     created: function() {
@@ -87,8 +87,38 @@ Vue.component("practice-body", {
         finishPractice: function() {
             //homepage
         }
+        
     }
 });
 var app = new Vue({
-    el: "#practice-page"
+    el: "#practice-page",
+    data: {
+        bestRecord: 100,
+        totalRecord: 10000,
+        days: 58  
+    }
+});
+
+var app2 = new Vue({
+    el: "#menu-bar",
+    data: {
+    },
+    methods: {
+        redirectToPractice: function() {
+            console.log("redirect to practice");
+            window.location.href = "main.html";
+        }
+    }
+});
+
+var app3 = new Vue({
+    el: "#menu-in-practice",
+    data: {
+    },
+    methods: {
+        redirectToHome: function() {
+            console.log("redirect to home");
+            window.location.href = "homepage.html";
+        }
+    }
 });
