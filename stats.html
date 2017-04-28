@@ -10,41 +10,38 @@
     </head>
     <body>
         <header class="container page-header">
-            <p>历史记录</p>   
+            <p>历史训练记录</p>      
         </header>
 
-        <div class="container" id="practice-page">
-            <div class="row">
-                <div class="col-sm-12">
-                   <span>最高纪录:{{bestRecord}}</span>
-                   <span>总计:{{totalRecord}}</span>
-                   <span>平均纪录:{{Math.round(totalRecord / days)}}</span>
-                   <hr>
-                </div>
-            </div>
+        <div id="stats-id" class="table-responsive">
+            <table class="table">
+                <tr>
+                    <td>日期</td>
+                    <td>训练量</td>
+                </tr>
+                <tr v-bind:class="{'info': index % 2 === 0, 'active': index % 2 === 1}" v-for="(data, index) in dataHistory">
+                    <td>{{data.datetime}}</td>
+                    <td>{{data.record}}</td>
+                </tr>
+            </table>
         </div>
 
-        <img src="./assets/image/pushups-img.jpg" alt="push ups image" class="img-responsive img-circle">
-
-        <footer class="container" id="menu-bar">
-            <hr>
+        <footer class="container" id="menu-in-practice">
             <div class="row">
                 <div class="col-sm-4">
-                    <button class="btn btn-info btn-sm" @click="redirectToPractice">训练</button>
-                    <button class="btn btn-info btn-sm" @click="redirectToStats">统计</button>
-                    <button class="btn btn-info btn-sm" @click="redirectToFreePractice">自由训练</button>
+                    <button class="btn btn-info btn-sm" @click="redirectToHome">首页</button>
                 </div>
 
             </div>
         </footer>
 
-        
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.6/vue.js" integrity="sha256-MbKnwYm5PqnQ9xLd0vK2C8vDJZA+PXKuNlmgJc+BG48=" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js" integrity="sha256-Cv5v4i4SuYvwRYzIONifZjoc99CkwfncROMSWat1cVA=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.4/timeago.min.js" integrity="sha256-34otvl+f6DWlliQUlAwT5hvizEJc8lPlNpW9T23pfGA=" crossorigin="anonymous"></script>
+        <script src="assets/js/datetime.js"></script>
         <script src="assets/js/app.js"></script>
+       
     </body>
 
 </html>

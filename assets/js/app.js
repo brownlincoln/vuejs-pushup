@@ -67,7 +67,7 @@ Vue.component("practice-body", {
                 };
                 tempDataHistory.splice(0, 0, todayRecord);
                 this.setDataHistory("dataHistoryKey", tempDataHistory);
-                alert("hello");
+                //alert("hello");
            }
            for(var index in tempCycleNums) {
                lastSum = currentSum;
@@ -79,7 +79,7 @@ Vue.component("practice-body", {
                //console.log(tempCompleted);
                if(tempCompleted === this.totalNum) {
                    //this.setData();                   
-                   window.location.href = "homepage.html";
+                   window.location.href = "stats.html";
                }
                if(tempCompleted >= lastSum && tempCompleted < currentSum) {
                    return currentSum - tempCompleted;
@@ -151,6 +151,14 @@ var app2 = new Vue({
         redirectToPractice: function() {
             console.log("redirect to practice");
             window.location.href = "main.html";
+        },
+        redirectToStats: function() {
+            console.log("redirect to stats");
+            window.location.href = "stats.html";
+        },
+        redirectToFreePractice: function() {
+            console.log("redirect to free practice");
+            window.location.href = "free-practice.html";
         }
     }
 });
@@ -166,3 +174,24 @@ var app3 = new Vue({
         }
     }
 });
+
+var app3 = new Vue({
+    el: "#stats-id",
+    data: {
+        "dataHistory": JSON.parse(localStorage.getItem("dataHistoryKey"))
+    }
+});
+
+var app4 = new Vue({
+    el: "#free-id",
+    data: {
+        "datetime": getDatetime(),
+        "counter": 0
+    },
+    methods: {
+        increment: function() {
+            return ++this.counter;
+        }
+    }
+});
+
