@@ -36,23 +36,38 @@
         <template id="practice-body-template">
             <div>
                  <div class="row">
-                <div class="col-sm-12">
-                     <span class="label label-warning"></span>
-            <span class="label label-warning">{{pushUpsData[0].cycleNums[0]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[1]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[2]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[3]}}</span>
-            <span class="label label-default">{{pushUpsData[0].cycleNums[4]}}</span>
+                    <div class="col-sm-12">
+                        <span v-bind:class="{'label label-warning': cycleCounter === 1, 'label label-default': cycleCounter !== 1}">{{pushUpsData[0].cycleNums[0]}}</span>
+                        <span v-bind:class="{'label label-warning': cycleCounter === 2, 'label label-default': cycleCounter !== 2}">{{pushUpsData[0].cycleNums[1]}}</span>
+                        <span v-bind:class="{'label label-warning': cycleCounter === 3, 'label label-default': cycleCounter !== 3}">{{pushUpsData[0].cycleNums[2]}}</span>
+                        <span v-bind:class="{'label label-warning': cycleCounter === 4, 'label label-default': cycleCounter !== 4}">{{pushUpsData[0].cycleNums[3]}}</span>
+                        <span v-bind:class="{'label label-warning': cycleCounter === 5, 'label label-default': cycleCounter !== 5}">{{pushUpsData[0].cycleNums[4]}}</span>
+                    </div>
                 </div>
-            </div>
-            <hr>
+                <hr>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <button class="btn btn-info btn-lg" @click="decrement">{{currentRemaining}}</button>
-            <!--<button class="btn btn-danger" @click="resetApp">重置</button>-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="train-text" v-show="isTrainTime">                             
+                            <br>
+                            <button class="btn btn-info btn-lg" @click="decrement">
+                                <span>
+                                    {{currentRemaining}}
+                                </span>
+                            </button>
+                        </div>
+                        <div class="tip-text" v-show="!isTrainTime">
+                            <span class="text text-warning">休息2分钟再做，效果更好哦</span>
+                            <br>
+                            <button class="btn btn-info btn-lg">
+                                 <span @click="returnTrain">继续</span>
+                            </button>
+                        </div>
+                       
+                        
+                <!--<button class="btn btn-danger" @click="resetApp">重置</button>-->
+                    </div>
                 </div>
-            </div>
             </div>
         </template>
 
@@ -60,7 +75,9 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js" integrity="sha256-Cv5v4i4SuYvwRYzIONifZjoc99CkwfncROMSWat1cVA=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.4/timeago.min.js" integrity="sha256-34otvl+f6DWlliQUlAwT5hvizEJc8lPlNpW9T23pfGA=" crossorigin="anonymous"></script>
+        <script src="assets/js/datetime.js"></script>
         <script src="assets/js/app.js"></script>
+       
     </body>
 
 </html>

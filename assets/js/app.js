@@ -5,7 +5,7 @@ Vue.component("practice-body", {
         return {
             pushUpsData: [
                 {
-                    cycleNums: [5, 10, 11, 9, 10],
+                    cycleNums: [2, 1, 3, 4, 2],
                     completedNum: 0,
                     startTime: Date.now(),
                     endTime: Date.now()
@@ -16,7 +16,15 @@ Vue.component("practice-body", {
                     startTime: Date.now(),
                     endTime: Date.now()
                 }              
-            ]     
+            ],
+            dataHistory: [
+                {
+                    "datetime": getDatetime(),
+                    "record": 123
+                }
+            ],
+            isTrainTime: true,
+            cycleCounter: 1     
         };
     },
     created: function() {
@@ -38,7 +46,7 @@ Vue.component("practice-body", {
                 //console.log(num);
                 total = total + cycles[index];
             }
-            console.log(total);
+            // console.log(total);
             return total;
         },
         currentRemaining: function() {
@@ -49,16 +57,24 @@ Vue.component("practice-body", {
            // console.log(currentSum);
            var length = tempCycleNums.length;
            if(this.completedNum === this.totalNum) {
-                //finishPractice()
+                //finishPractice()  
            }
            for(var index in tempCycleNums) {
                lastSum = currentSum;
                currentSum += tempCycleNums[index];
+               if(tempCompleted === currentSum) {
+                   this.isTrainTime = false;
+                   this.cycleCounter++;
+               }
+            //    console.log(this.totalNum);
+               if(tempCompleted === this.totalNum) {
+                   this.setData();
+                   window.location.href = "homepage.html";
+               }
                if(tempCompleted >= lastSum && tempCompleted < currentSum) {
                    return currentSum - tempCompleted;
                }
-           }
-           
+           }   
         }
     },
     methods: {
@@ -82,21 +98,25 @@ Vue.component("practice-body", {
         },
         decrement: function(pushUp) {
             this.pushUpsData[0].completedNum += 1;
+            // console.log(getDatetime());
             //console.log(this.pushUpsData[0].completedNum);
         },
         finishPractice: function() {
             //homepage
+        },
+        returnTrain: function() {
+            this.isTrainTime = true;
         }
-        
     }
 });
 var app = new Vue({
     el: "#practice-page",
     data: {
-        bestRecord: 100,
+        bestRecord: 150,
         totalRecord: 10000,
-        days: 58  
+        days: 110
     }
+   
 });
 
 var app2 = new Vue({
