@@ -30,6 +30,7 @@ Vue.component("practice-body", {
     created: function() {
         if(localStorage.pushUpsKey) {
             this.pushUps = localStorage.getItem("pushUpsKey");
+            //this.dataHistory = localStorage.getItem("dataHistoryKey");
         } else {
             this.initApp();
         }
@@ -56,8 +57,17 @@ Vue.component("practice-body", {
             var lastSum = 0;
            // console.log(currentSum);
            var length = tempCycleNums.length;
-           if(this.completedNum === this.totalNum) {
+           if(tempCompleted === this.totalNum) {
                 //finishPractice()  
+                
+                var tempDataHistory = this.getDataHistory("dataHistoryKey");
+                var todayRecord = {
+                    "datetime": getDatetime(),
+                    "record": tempCompleted
+                };
+                tempDataHistory.splice(0, 0, todayRecord);
+                this.setDataHistory("dataHistoryKey", tempDataHistory);
+                alert("hello");
            }
            for(var index in tempCycleNums) {
                lastSum = currentSum;
@@ -66,9 +76,9 @@ Vue.component("practice-body", {
                    this.isTrainTime = false;
                    this.cycleCounter++;
                }
-            //    console.log(this.totalNum);
+               //console.log(tempCompleted);
                if(tempCompleted === this.totalNum) {
-                   this.setData();
+                   //this.setData();                   
                    window.location.href = "homepage.html";
                }
                if(tempCompleted >= lastSum && tempCompleted < currentSum) {
@@ -86,17 +96,31 @@ Vue.component("practice-body", {
             var pushUpsDataString = localStorage.getItem(key);
             return JSON.parse(pushUpsDataString);
         },
+        setDataHistory: function(key, data) {
+            var dataHistoryString = JSON.stringify(data);
+            localStorage.setItem(key, dataHistoryString);
+        },
+        getDataHistory: function(key) {
+            var dataHistoryString = localStorage.getItem(key);
+            return JSON.parse(dataHistoryString);
+        },
         initApp: function() {
             localStorage.clear();
             this.setData("originalKey", this.pushUpsData);
             this.setData("pushUpsKey", this.pushUpsData);
+            this.setDataHistory("dataHistoryKey", [
+                {
+                    "datetime": getDatetime(),
+                    "record": 0
+                }
+            ]);
             console.log("initApp");
         },
         resetApp: function() {
             this.pushUpsData = localStorage.getItem("originalKey");
             this.initApp();
         },
-        decrement: function(pushUp) {
+        decrement: function() {
             this.pushUpsData[0].completedNum += 1;
             // console.log(getDatetime());
             //console.log(this.pushUpsData[0].completedNum);
