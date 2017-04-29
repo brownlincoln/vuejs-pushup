@@ -9,8 +9,10 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        <header class="container page-header">
-            <p>今天的训练组合</p>      
+        <header class="container page-header page-tip">
+            <div class="page-tip">
+                <p>今天的训练组合</p>      
+            </div>
         </header>
 
         <div class="container" id="practice-page">
@@ -48,17 +50,17 @@
                     <div class="col-sm-12">
                         <div class="train-text" v-show="isTrainTime">                             
                             <br>
-                            <button class="btn btn-info btn-lg" @click="decrement">
-                                <span>
+                            <button class="btn btn-info btn-lg prac-btn" @click="decrement">
+                                <span class="counter">
                                     {{currentRemaining}}
                                 </span>
                             </button>
                         </div>
                         <div class="tip-text" v-show="!isTrainTime">
-                            <span class="text text-warning">休息2分钟再做，效果更好哦</span>
+                            <span class="text text-warning prac-tip">休息2分钟再做，效果更好哦</span>
                             <br>
-                            <button class="btn btn-info btn-lg">
-                                 <span @click="returnTrain">继续</span>
+                            <button class="btn btn-info btn-lg prac-btn" @click="returnTrain">
+                                 <span class="counter">继续</span>
                             </button>
                         </div>
                        

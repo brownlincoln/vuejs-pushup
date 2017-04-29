@@ -1,0 +1,13 @@
+
+.train-text .page-tip .prac-tip #menu-in-practice {
+    text-align: center;
+}
+.prac-btn {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+}
+
+.counter {
+    font-size: 250%;
+}
