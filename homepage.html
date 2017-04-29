@@ -16,9 +16,10 @@
         <div class="container" id="practice-page">
             <div class="row">
                 <div class="col-sm-12">
-                   <span>最高纪录:{{bestRecord}}</span>
+                   <span>最高纪录:{{bestRecord}}/天</span>
                    <span>总计:{{totalRecord}}</span>
-                   <span>平均纪录:{{Math.round(totalRecord / days)}}</span>
+                   <span v-if="days != 0">平均纪录:{{Math.round(totalRecord / days)}}/天</span>
+                   <span v-if="days == 0">平均纪录:0/天</span>
                    <hr>
                 </div>
             </div>
@@ -33,6 +34,7 @@
                     <button class="btn btn-info btn-sm" @click="redirectToPractice">训练</button>
                     <button class="btn btn-info btn-sm" @click="redirectToStats">统计</button>
                     <button class="btn btn-info btn-sm" @click="redirectToFreePractice">自由训练</button>
+                    <button class="btn btn-info btn-sm" @click="clearData">数据清空</button>
                 </div>
 
             </div>
@@ -44,6 +46,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js" integrity="sha256-Cv5v4i4SuYvwRYzIONifZjoc99CkwfncROMSWat1cVA=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.4/timeago.min.js" integrity="sha256-34otvl+f6DWlliQUlAwT5hvizEJc8lPlNpW9T23pfGA=" crossorigin="anonymous"></script>
+        <script src="assets/js/datetime.js"></script>
         <script src="assets/js/app.js"></script>
     </body>
 
